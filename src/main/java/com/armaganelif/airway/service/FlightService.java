@@ -1,7 +1,9 @@
 package com.armaganelif.airway.service;
 
 import com.armaganelif.airway.exception.NotFoundException;
-import com.armaganelif.airway.model.*;
+import com.armaganelif.airway.model.Airway;
+import com.armaganelif.airway.model.Flight;
+import com.armaganelif.airway.model.Route;
 import com.armaganelif.airway.repository.AirwayRepository;
 import com.armaganelif.airway.repository.FlightRepository;
 import com.armaganelif.airway.repository.RouteRepository;
@@ -12,8 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class FlightService {

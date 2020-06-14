@@ -1,9 +1,9 @@
 package com.armaganelif.airway.controller;
 
-import com.armaganelif.airway.model.Airport;
 import com.armaganelif.airway.model.Route;
 import com.armaganelif.airway.service.RouteService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,10 +24,10 @@ public class RouteController {
         return ResponseEntity.ok(routeService.findByDepartureName(departureName, pageable));
     }
 
-//    TODO: kalkış yapılan havalimanına göre varış havalimanları aranır
+    @ApiOperation(value = "Search destination airport according to dependent departure airport")
     @GetMapping("/destination/{destinationName}")
     public ResponseEntity<Page<Route>> getByDeparture(@PathVariable String destinationName, @RequestParam Long departureAirportId, Pageable pageable) {
-        return ResponseEntity.ok(routeService.findByDestinationNameAccordingToDeparture(departureAirportId,destinationName, pageable));
+        return ResponseEntity.ok(routeService.findByDestinationNameAccordingToDeparture(departureAirportId, destinationName, pageable));
     }
 
     @PostMapping
