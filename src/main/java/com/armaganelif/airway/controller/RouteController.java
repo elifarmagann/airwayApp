@@ -19,14 +19,15 @@ public class RouteController {
     @Autowired
     RouteService routeService;
 
-    @GetMapping("/departure/{departureName}")
-    public ResponseEntity<Page<Route>> getByDeparture(@PathVariable String departureName, Pageable pageable) {
+    @ApiOperation(value = "Search departure airport by name")
+    @GetMapping("/departure-search")
+    public ResponseEntity<Page<Route>> getByDeparture(@RequestParam String departureName, Pageable pageable) {
         return ResponseEntity.ok(routeService.findByDepartureName(departureName, pageable));
     }
 
     @ApiOperation(value = "Search destination airport according to dependent departure airport")
-    @GetMapping("/destination/{destinationName}")
-    public ResponseEntity<Page<Route>> getByDeparture(@PathVariable String destinationName, @RequestParam Long departureAirportId, Pageable pageable) {
+    @GetMapping("/destination-search")
+    public ResponseEntity<Page<Route>> getByDeparture(@RequestParam Long departureAirportId, @RequestParam String destinationName, Pageable pageable) {
         return ResponseEntity.ok(routeService.findByDestinationNameAccordingToDeparture(departureAirportId, destinationName, pageable));
     }
 

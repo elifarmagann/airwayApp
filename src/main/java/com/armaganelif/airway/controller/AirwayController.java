@@ -3,6 +3,7 @@ package com.armaganelif.airway.controller;
 import com.armaganelif.airway.model.Airway;
 import com.armaganelif.airway.service.AirwayService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,8 +24,9 @@ public class AirwayController {
         return ResponseEntity.ok(airwayService.findAll(pageable));
     }
 
-    @GetMapping("/name/{name}")
-    public ResponseEntity<Page<Airway>> findByName(@PathVariable("name") String name,Pageable pageable) {
+    @ApiOperation(value = "Search airway by name")
+    @GetMapping("/search")
+    public ResponseEntity<Page<Airway>> findByName(@RequestParam("name") String name,Pageable pageable) {
         return ResponseEntity.ok(airwayService.findByName(name, pageable));
     }
 
